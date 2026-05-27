@@ -1,0 +1,33 @@
+{
+  "name": "assignment-burger-builder-application",
+  "version": "1.0.0",
+  "description": "Burger Builder Application where users can create a burger by adding or removing slices. Each slice has a price and the total burger price update dynamically based on the slices selected and the quantity of burgers ordered.",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon server/server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MPARSURAM99/Assignment-Burger-Builder-Application.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/MPARSURAM99/Assignment-Burger-Builder-Application/issues"
+  },
+  "homepage": "https://github.com/MPARSURAM99/Assignment-Burger-Builder-Application#readme",
+  "dependencies": {
+    "concurrently": "^9.2.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mongoose": "^9.6.3",
+    "mongose": "^0.0.2-security",
+    "nodemon": "^3.1.14"
+  }
+}
