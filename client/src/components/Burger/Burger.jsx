@@ -1,67 +1,45 @@
 import Slice from "./Slice";
-import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 
 const Burger = ({ slices, setSlices }) => {
-  const handleDragEnd = (result) => {
-    if (!result.destination) return;
-
-    const items = Array.from(slices);
-    const [reordered] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reordered);
-
-    setSlices(items);
-  };
-
   const removeSlice = (id) => {
     setSlices(slices.filter((slice) => slice.id !== id));
   };
 
   return (
     <div className="flex flex-col items-center">
-      <DragDropContext onDragEnd={handleDragEnd}>
-        <Droppable droppableId="burger">
-          {(provided) => (
-            <div ref={provided.innerRef} {...provided.droppableProps}>
-              {/* Bread Top */}
-              <div className="w-72 h-14 bg-yellow-700 rounded-t-full mb-1" />
+      {/* Bread Top */}
+      <div className="w-56 sm:w-64 md:w-72 h-14 bg-yellow-700 rounded-t-full mb-1 shadow-md" />
 
-              {slices.map((slice, index) => (
-                <Draggable key={slice.id} draggableId={slice.id} index={index}>
-                  {(provided) => (
-                    <div
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                      className="relative"
-                    >
-                      <Slice type={slice.type} />
-                      <button
-                        onClick={() => removeSlice(slice.id)}
-                        className="
-                          absolute
-                          right-[-50px]
-                          top-0
-                          bg-red-500
-                          text-white
-                          px-2
-                          rounded
-                        "
-                      >
-                        X
-                      </button>
-                    </div>
-                  )}
-                </Draggable>
-              ))}
+      {/* Burger Slices */}
+      {slices.map((slice) => (
+        <div key={slice.id} className="relative flex items-center">
+          <Slice type={slice.type} />
 
-              {provided.placeholder}
+          {/* Remove Button */}
+          <button
+            onClick={() => removeSlice(slice.id)}
+            className="
+              absolute
+              -right-10
+              sm:-right-12
+              bg-red-500
+              hover:bg-red-600
+              text-white
+              w-7
+              h-7
+              rounded-full
+              font-bold
+              shadow-md
+              transition
+            "
+          >
+            ×
+          </button>
+        </div>
+      ))}
 
-              {/* Bread Bottom */}
-              <div className="w-72 h-10 bg-yellow-800 rounded-b-lg mt-1" />
-            </div>
-          )}
-        </Droppable>
-      </DragDropContext>
+      {/* Bread Bottom */}
+      <div className="w-56 sm:w-64 md:w-72 h-10 bg-yellow-800 rounded-b-lg mt-1 shadow-md" />
     </div>
   );
 };

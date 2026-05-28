@@ -38,7 +38,7 @@ const Home = () => {
 
   return (
     <div className="min-h-screen p-10 bg-gradient-to-r from-slate-100 to-blue-100">
-      <div className="grid grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
         <div>
           <SliceControls addSlice={addSlice} />
         </div>
